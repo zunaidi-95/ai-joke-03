@@ -8,6 +8,10 @@ import os
 
 OUTPUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 
+# The grader's container provides /output, but a fresh output directory
+# must not crash the entry: create it if it is missing.
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 JOKE = "My coding agent imported a new library and documented it beautifully. The library doesn't exist."
 
 with open(os.path.join(OUTPUT_DIR, "entry.txt"), "w", encoding="utf-8") as f:
